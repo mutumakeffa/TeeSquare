@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
+
+<body style="background: #E0E7ED">
+    <nav class="navbar navbar-expand-lg navbar-dark p-0" style="background: #606c88;">
+        <div class="container-fluid">
+            <div class="navbar-brand p-0 m-0 "><a href="#" style="color:#e1ffff; text-decoration: none; padding: 0; margin: 0; font-size: 1rem"> TeeSQUARE </a></div>
+            <span class="navbar-text p-0 m-0">support line: +254716681166</span>
+            <span class="navbar-text p-0 m-0">info@teesquare.com</span>
+        </div>
+    </nav>
+
+    <nav class="navbar navbar-light bg-light p-0 ">
+        <div class="container-fluid">
+            <span class="navbar-text">
+                <h5 class=" p-0 m-0" style="font-weight: bold">Projects</h5>
+            </span>
+            <span class="navbar-text">
+                <form action="/search" method="post" class="form-inline p-0 m-0 justify-content-center">
+                <div>
+                    <input class="form-control  form-group-lg mr-sm-2 p-1 pl-2 pr-2" type="search" placeholder="Search Project by name or Code" aria-label="Search" style="text-align: center; font-size: .9rem; " name="search">
+                    <button class="btn btn-outline-success my-2 my-sm-0 p-1 pl-3 pr-3" type="submit" style="font-size: .9rem">Search</button>
+                </div>
+                </form>
+            </span>
+            <span class="navbar-text">
+                <button class="btn btn-success p-1 pl-4 pr-4 mr-4" style="font-size: .9rem" data-toggle="modal" data-target="#myModal">Add new Project</button>
+            </span>
+        </div>
+    </nav>
+
+    <!-- Div for the welcoming message -->
+    <div class="container-fluid mt-2">
+        <span> <b style="color: red">Welcome back {{ msg10 }}</b> </span>
+    </div>
+    <!-- End of Div for the welcoming message-->
+
+     <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">New Project</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <form action="/add_projects" method="post">
+                <div class="modal-body">
+
+                        <input type="text" class="form-control mb-3" name="project_name" placeholder="Enter Project name" style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem; ">
+                        <input type="text" class="form-control mb-3" name="project_code" placeholder="Enter Project code. code must be unique ...  fce324" style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem;">
+                        <input type="text" class="form-control mb-3" name="project_status" placeholder="project status ...  in progress" style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem;">
+                        <input type="text" class="form-control mb-3" name="project_location" placeholder="project location" style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem;">
+
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <button type="submit" class="btn btn-success">Create</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    <!-- End of Modal section -->
+
+    <!-- Div for Projects Table -->
+    <form action="/projects" >
+    <div class="container mt-5" >
+        <table class="table" style="color: #8595A1; font-size: 16px; box-shadow: inset 0 -1px 0 0 #E0E7ED; background: white;">
+            <tr class="thead-light" style="color: #474e5d; font-weight: 600">
+                <td>Project Name</td>
+                <td>Project Code</td>
+                <td>Sheets</td>
+                <td>Team</td>
+                <td>Status</td>
+                <td>Permission</td>
+            </tr>
+            <tr>
+                <td style="font-weight: 600;"> Sample: SGR Phase II</td>
+                <td>FC200</td>
+                <td>12</td>
+                <td>5</td>
+                <td>in Progress</td>
+                <td>Admin</td>
+                <td>  </td>
+                <!-- <td><a href="#" style="text-decoration: none" class="btn-sm btn-secondary p-1 pl-2 pr-2">Launch project</a></td> -->
+            </tr>
+            {% for row in data %}
+            <tr>
+                <td style="font-weight: 600;"> {{ row[0] }}</td>
+                <td> {{ row[1] }}</td>
+                <td>12</td>
+                <td>5</td>
+                <td> {{ row[2] }}</td>
+                <td>  </td>
+                <td><a href="#" style="text-decoration: none" class="btn-sm btn-primary p-1 pl-2 pr-2">Launch project</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    </form>
+    <!-- End of Projects Table -->
+
+</body>
+</html>

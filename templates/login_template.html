@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Overlay empty Div -->
+<div class="overlay" style="margin: 0 auto;">
+
+<!--Start of NAV section-->
+    <div class="container-fluid">
+        <nav class="navbar mb-o">
+            <!-- Brand -->
+            <a class="navbar-brand" href="/" style="color: white;">TeeSQUARE</a>
+         </nav>
+    </div>
+<!--end of Nav section-->
+
+
+
+    <div class="row" style="margin: 0 auto;">
+        <div class="container mt-5 pt-4" align="center">
+          <p><span style="color:white;">Welcome Back. Login to Proceed! </span></p>
+        </div>
+
+      <!-- Div for the main form area -->
+      <div class="container col-md-4 offset-md-4 shadow-lg p-4 mb-4 bg-white rounded" id="kefa"> <!-- col-md-4 offset-md-4 sets the div at the center; the shadow-lg gives the dic a shadow appearance; p-4 applies padding on the div, mb-4 applies a margin on top of the div rounded - adds rounded corners-->
+          <form action="/login" method="post">
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" id="email" placeholder="" name="email_add" required="required">
+              </div>
+              <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" placeholder="" name="password" required="required"> <!-- .form-control class to style inputs with full-width and proper padding -->
+              </div>
+              <div class="form-group">
+                <input type="checkbox" name="yes"> Remember me
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Submit</button>
+          </form>
+      </div>
+      <!-- End of Div for the main form area -->
+
+        <br><br>
+
+      <div class="container" align="center">
+        <p style="color: white;">New Member? <a href="/register" class="text-info">create an account</a></p>
+      </div>
+    </div>
+</div>
+
+<!-- <div class="jumbotron" style="margin: 0 auto">
+    <h3>Testing</h3>
+</div> -->
+
+</body>
+
+<!-- <style type="text/css">
+    body{
+        background-color: rgb(2,0,36);
+        background: linear-gradient(90deg, rgba(2,0,36,0.9696078260405725) 0%, rgba(9,9,121,0.6502800949481355) 100%);
+        background:url("../static/constructiongear.jpg"),rgba(2,0,36,0.93);
+        background-size: cover;
+        {#box-shadow: inset 0 0 0 1000px rgba(2,0,36,0.93);#}
+
+        }
+
+</style> -->
+<style>
+    body {
+        /*background: linear-gradient(rgba(2,0,36,0.9696078260405725), rgba(9,9,121,0.6502800949481355)), url( "../static/ConstructionProfessional.jpg");*/
+        background: linear-gradient(90deg, rgba(2,0,36,0.9696078260405725) 0%, rgba(9,9,121,0.6502800949481355) 100%), url( "../static/nairobi4.jpg");
+        background-size: cover;
+    }
+    /*body{
+        background: #606c88;
+    } */
+</style>
+
+</html>
