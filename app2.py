@@ -175,7 +175,7 @@ def login():
 
 @app2.route('/Dashboard')
 def dashboard():
-    return render_template('Dashboard.html')
+    return render_template('Dashboard2.html')
 
 
 @app2.route('/add_projects', methods=['POST', 'GET'])
