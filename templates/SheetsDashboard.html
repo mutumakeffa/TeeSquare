@@ -23,7 +23,7 @@
                     </li>
 
                     <li class="active">
-                      <a href="#" class="pl-4"> Sheets </a>
+                        <a href="/sheetsDashboard" class="pl-4"> Sheets </a>
                     </li>
 
                     <li>
@@ -85,7 +85,7 @@
                         </div>
 
                         <!-- Modal body -->
-                        <form action="/addsheet" method="post" enctype="multipart/form-data">
+                            <form action="/addSheets" method="post" enctype="multipart/form-data">
                             <div class="modal-body">
                                 <div class="container">
                                     <div class="row">
@@ -103,22 +103,25 @@
                                                     <div class="form-row">
                                                     <div class="form-group col-md-6">
                                                       <label for="SheetTitle" style="font-weight: 600; color: rgba(0,0,0,0.5);">Sheet Title</label>
-                                                      <input type="text" class="form-control" id="SheetTitle" placeholder="ex. Floor Plan">
+                                                        <input name="title" class="form-control" id="SheetTitle"
+                                                               placeholder="ex. Floor Plan">
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                       <label for="SheetNumber" style="font-weight: 600; color: rgba(0,0,0,0.5);">Sheet Number</label>
-                                                      <input type="" class="form-control" id="SheetNumber" placeholder="ex. A2020">
+                                                        <input name="sheetNumber" class="form-control" id="SheetNumber"
+                                                               placeholder="ex. A2020">
                                                     </div>
                                                   </div>
 
                                                   <div class="form-group">
                                                     <label for="Description" style="font-weight: 600; color: rgba(0,0,0,0.5);">Short Description</label>
-                                                    <input type="text" class="form-control" id="Description" placeholder="Floor Plan 1 changes">
+                                                      <input name="description" type="text" class="form-control"
+                                                             id="Description" placeholder="Floor Plan 1 changes">
                                                   </div>
                                                   <div class="form-row">
                                                     <div class="form-group col-md-4">
                                                       <label for="Tag" style="font-weight: 600; color: rgba(0,0,0,0.5);">Tag e.x civil or architectural</label>
-                                                      <select id="Tag" class="form-control">
+                                                        <select name="tag" id="Tag" class="form-control">
                                                         <option selected>#Civil</option>
                                                         <option>#Architectural</option>
                                                         <option>#Electrical</option>
@@ -136,7 +139,7 @@
                             <div class="modal-footer">
                                 <div class="container">
                                     <button type="button" class="btn btn-secondary p-2 pl-4 pr-4" data-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-success p-2 pl-4 pr-4">upload</button>
+                                    <button type="submit" class="btn btn-success p-2 pl-4 pr-4">upload</button>
                                 </div>
                             </div>
                         </form>
@@ -150,6 +153,39 @@
                 <!-- Find a way to link up the two modals -->
 
                 <!-- This modal two is to be used only when testing the next and previous function using Jquery -->
+
+                <!-- Div for Projects Table -->
+                <form action="">
+                    <div class="container mt-5 table-responsive">
+                        <table class="table"
+                               style="color: #8595A1; font-size: 16px; box-shadow: inset 0 -1px 0 0 #E0E7ED; background: white;">
+                            <thead>
+                            <tr class="thead-light" style="color: #474e5d; font-weight: 600">
+                                <td>Title</td>
+                                <td>sheet Number</td>
+                                <td>Version</td>
+                                <td>Description</td>
+                                <td>Tag</td>
+                                <td>edited by</td>
+                            </tr>
+                            </thead>
+
+                            {% for row in data %}
+                                <tr>
+                                    <td style="font-weight: 600;"> {{ row[1] }}</td>  <!-- Sheet Title -->
+                                    <td> {{ row[2] }}</td>   <!-- Sheet Number-->
+                                    <td>12</td> <!-- version  -->
+                                    <td> {{ row[3] }}</td> <!-- description -->
+                                    <td> {{ row[4] }}</td>  <!-- Tag -->
+                                    <td> Ex Admin</td>   <!-- Edited_by -->
+                                    <td><a href="#" style="text-decoration: none"
+                                           class="btn-sm btn-primary p-1 pl-2 pr-2">View sheet</a></td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </form>
+                <!-- End of Projects Table -->
             </main>
         </div>
 </body>

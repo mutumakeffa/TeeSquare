@@ -61,7 +61,16 @@
 
                         <input type="text" class="form-control mb-3" name="project_name" placeholder="Enter Project name" style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem; ">
                         <input type="text" class="form-control mb-3" name="project_code" placeholder="Enter Project code. code must be unique ...  fce324" style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem;">
-                        <input type="text" class="form-control mb-3" name="project_status" placeholder="project status ...  in progress" style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem;">
+                    <select id="Tag" class="form-control mb-3"
+                            style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem;"
+                            name="project_status">
+                        <option selected> Project status..</option>
+                        <option>Bidding stage</option>
+                        <option>Design stage</option>
+                        <option>In progress</option>
+                        <option>Complete</option>
+                    </select>
+                    <!-- <input type="text" class="form-control mb-3" name="project_status" placeholder="project status ...  in progress" style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem;"> -->
                         <input type="text" class="form-control mb-3" name="project_location" placeholder="project location" style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem;">
 
                 </div>
@@ -80,6 +89,7 @@
     <form action="/projects" >
     <div class="container mt-5" >
         <table class="table" style="color: #8595A1; font-size: 16px; box-shadow: inset 0 -1px 0 0 #E0E7ED; background: white;">
+            <thead class="thead-light">
             <tr class="thead-light" style="color: #474e5d; font-weight: 600">
                 <td>Project Name</td>
                 <td>Project Code</td>
@@ -88,6 +98,8 @@
                 <td>Status</td>
                 <td>Permission</td>
             </tr>
+            </thead>
+            <tbody>
             <tr>
                 <td style="font-weight: 600;"> Sample: SGR Phase II</td>
                 <td>FC200</td>
@@ -100,7 +112,9 @@
             </tr>
             {% for row in data %}
             <tr>
-                <td style="font-weight: 600;"> {{ row[0] }}</td>
+                <a href="#">
+                    <td style="font-weight: 600;"> {{ row[0] }}</td>
+                </a>
                 <td> {{ row[1] }}</td>
                 <td>12</td>
                 <td>5</td>
@@ -109,6 +123,7 @@
                 <td><a href="#" style="text-decoration: none" class="btn-sm btn-primary p-1 pl-2 pr-2">Launch project</a></td>
             </tr>
             {% endfor %}
+            </tbody>
         </table>
     </div>
     </form>

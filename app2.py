@@ -34,7 +34,7 @@ import pymysql
 
 
 # make route aware of methods to be received
-@app2.route('/addsheet', methods=['POST', 'GET'])
+@app2.route('/addSheets', methods=['POST', 'GET'])
 def addsheet():
     # We first have to check the methods sent either POST or Get so that we can extract the data sent. We do this by importing a module called request
 
@@ -45,7 +45,6 @@ def addsheet():
         desc = request.form['description']
         tag = request.form['tag']
 
-
         # check if file is present and allowed
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
@@ -53,7 +52,6 @@ def addsheet():
             file.save(os.path.join(app2.config['UPLOAD_FOLDER'], filename))
 
         # once the file is saved, save the link to the db
-
         # now we want to save this data in the database hence we have to import pymysql as the connector to the sql -top
         connection = pymysql.connect("localhost", "root", "", "datasuit_db")
 
@@ -68,24 +66,40 @@ def addsheet():
         # commit/rollback -if the connection crashes before it commits, it should render back
         try:
             connection.commit()
-            return render_template('sheets.html', msg="CONGRATS! SUCCESSFULLY SAVED")
+            return redirect('/sheetsDashboard')
         except:
             connection.commit()
-            return render_template('sheets.html', msg="Error Occurred during transmission")
+            return render_template('SheetsDashboard.html', msg="Error Occurred during transmission")
 
     else:
-        return render_template('sheets.html', msg2="Sorry, connection failed. Try again!")
+        return render_template('SheetsDashboard.html', msg2="Sorry, connection failed. Try again!")
+
+
+@app2.route('/sheetsDashboard')
+def sheets_dashboard():
+    # first connect to the database using pymysql
+    connection = pymysql.connect("localhost", "root", "", "datasuit_db")
+
+    # we now use the cursor function to execute on the database
+    cursor = connection.cursor()
+
+    sql = """SELECT * FROM tbl_sheets ORDER BY edited_when DESC """  # shows records in descending order or use ASC
+
+    cursor.execute(sql)
+
+    rows = cursor.fetchall()  # rows can contain 0,1 or more rows
+
+    # perform a row count
+    if cursor.rowcount == 0:
+        return render_template('SheetsDashboard.html', msg='No records')
+    else:
+        return render_template('SheetsDashboard.html', data=rows)
 
 
 # make our routes return
 @app2.route('/')
 def main():
     return render_template('main_testing_components.html')
-
-
-@app2.route('/sheets2')
-def sheets():
-    return render_template('sheets2.html')
 
 
 @app2.route('/register', methods=['POST', 'GET'])
@@ -144,6 +158,10 @@ def login():
             return render_template('login_template.html', msg6="unsuccessful Login. Check if you are registered")
         elif cursor.rowcount == 1:
             session['key'] = email_add
+            # rows = cursor.fetchall()
+            # session['key1'] = rows[0]
+            # session['key2'] = rows[3]
+            # print(rows[3])
             return redirect('/projects')
 
         else:
@@ -164,7 +182,6 @@ def dashboard():
 def add_projects():
     # we want to protect the Projects templates with a session
     if 'key' in session:
-
         # pull out the key and get back your email and store that email in a variable called email
         # This helps you track who was in session when a certain activity was executed
         # you can render this email to the database to monitor various aspects
@@ -205,8 +222,12 @@ def add_projects():
 @app2.route('/search', methods=['POST', 'GET'])
 def search():
     if request.method == 'POST':
+
         project_name = request.form['search']
         project_code = request.form['search']
+
+        # Validate your passwords
+        # if project_name=="":
 
         connection = pymysql.connect("localhost", "root", "", "datasuit_db")
 
@@ -232,45 +253,35 @@ def search():
         return render_template('Projects.html')
 
 
-@app2.route('/products')
-def products():
-    connection = pymysql.connect("localhost", "root", "", "datasuit_db")
-
-    cursor = connection.cursor()
-
-    sql = """SELECT * FROM tbl_products """
-
-    cursor.execute(sql)
-
-    # fetch rows
-    rows = cursor.fetchall()  # rows can contain 0,1 or more rows
-
-    # perform a row count
-    if cursor.rowcount == 0:
-        return render_template('Products.html', msg='No records')
-    else:
-        return render_template('Products.html', data=rows)
-
-
 @app2.route('/projects')
 def projects():
-    connection = pymysql.connect("localhost", "root", "", "datasuit_db")
+    if 'key' in session:
 
-    cursor = connection.cursor()
+        # you can check the session roles here
+        # if not
+        # check algorithms to encrypt passwords Bcrypt
 
-    sql = """SELECT * FROM tbl_projects ORDER BY time_created DESC """  # shows records in descending order / ASC
+        connection = pymysql.connect("localhost", "root", "", "datasuit_db")
 
-    cursor.execute(sql)
+        cursor = connection.cursor()
 
-    # fetch rows
-    rows = cursor.fetchall()  # rows can contain 0,1 or more rows
+        sql = """SELECT * FROM tbl_projects WHERE email_add = %s  ORDER BY time_created DESC """  # shows records in descending order / ASC
+        email = session['key']
+        cursor.execute(sql, (email))
 
-    # perform a row count
-    if cursor.rowcount == 0:
-        return render_template('Projects.html', msg='No update in Projects')
+        # fetch rows
+        rows = cursor.fetchall()  # rows can contain 0,1 or more rows
+
+        # perform a row count
+        if cursor.rowcount == 0:
+            return render_template('Projects.html', msg='No update in Projects')
+        else:
+            return render_template('Projects.html', data=rows)
+
+    elif 'key' not in session:
+        return redirect('/login')
     else:
-        return render_template('Projects.html', data=rows)
-
+        return redirect('/login')
 
 # make sure to add a logout link to the website to clear sessions
 @app2.route('/logout')

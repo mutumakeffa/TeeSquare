@@ -32,6 +32,7 @@
       <!-- Div for the main form area -->
       <div class="container col-md-4 offset-md-4 shadow-lg p-4 mb-4 bg-white rounded" id="kefa"> <!-- col-md-4 offset-md-4 sets the div at the center; the shadow-lg gives the dic a shadow appearance; p-4 applies padding on the div, mb-4 applies a margin on top of the div rounded - adds rounded corners-->
           <form action="/login" method="post">
+              <p style="color: darkred">{{ msg6 }}</p>
               <div class="form-group">
                 <label for="email">Email address:</label>
                 <input type="email" class="form-control" id="email" placeholder="" name="email_add" required="required">
@@ -40,9 +41,10 @@
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" id="password" placeholder="" name="password" required="required"> <!-- .form-control class to style inputs with full-width and proper padding -->
               </div>
-              <div class="form-group">
-                <input type="checkbox" name="yes"> Remember me
-              </div>
+              <!--  <div class="form-group">
+                    <input type="checkbox" name="yes"> Remember me
+                  </div>
+              -->
               <button type="submit" class="btn btn-primary btn-block">Submit</button>
           </form>
       </div>
@@ -76,7 +78,7 @@
 <style>
     body {
         /*background: linear-gradient(rgba(2,0,36,0.9696078260405725), rgba(9,9,121,0.6502800949481355)), url( "../static/ConstructionProfessional.jpg");*/
-        background: linear-gradient(90deg, rgba(2,0,36,0.9696078260405725) 0%, rgba(9,9,121,0.6502800949481355) 100%), url( "../static/nairobi4.jpg");
+        background: linear-gradient(90deg, rgba(2, 0, 36, 0.9696078260405725) 0%, rgba(9, 9, 121, 0.6502800949481355) 100%), url("../static/nairobi4-min.jpg");
         background-size: cover;
     }
     /*body{
