@@ -44,7 +44,7 @@
     </div>
     <!-- End of Div for the welcoming message-->
 
-     <!-- The Modal -->
+    <!-- The Modal for creating a new project-->
     <div class="modal fade" id="myModal">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -83,7 +83,7 @@
             </div>
         </div>
     </div>
-    <!-- End of Modal section -->
+    <!-- End of Modal section for creating a new project-->
 
     <!-- Div for Projects Table -->
     <form action="/projects" >
@@ -120,7 +120,8 @@
                 <td>5</td>
                 <td> {{ row[2] }}</td>
                 <td>  </td>
-                <td><a href="#" style="text-decoration: none" class="btn-sm btn-primary p-1 pl-2 pr-2">Launch project</a></td>
+                <td><a href="/Dashboard" style="text-decoration: none" class="btn-sm btn-primary p-1 pl-2 pr-2">Launch
+                    project</a></td>
             </tr>
             {% endfor %}
             </tbody>
