@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="83f99685-1066-4dc8-aa0f-6caabe56d464" name="Default" comment="HTML changes. Linked up Dashboard and SheetsDashboard">
+    <list default="true" id="83f99685-1066-4dc8-aa0f-6caabe56d464" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/static/blueprint.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/file.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/pdf.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/team.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/Teams.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app2.py" beforeDir="false" afterPath="$PROJECT_DIR$/app2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/Dashboard2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Dashboard2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/main_testing_components.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main_testing_components.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,7 +25,7 @@
     <SUITE FILE_PATH="coverage/untitled$untitled.coverage" NAME="untitled Coverage Results" MODIFIED="1535547149539" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/TeeSquare$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1550501986656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/untitled$Flask__app2_py_.coverage" NAME="Flask (app2.py) Coverage Results" MODIFIED="1540449216842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/TeeSquare$Flask__app2_py_.coverage" NAME="Flask (app2.py) Coverage Results" MODIFIED="1550704186577" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/TeeSquare$Flask__app2_py_.coverage" NAME="Flask (app2.py) Coverage Results" MODIFIED="1554084532267" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -38,8 +46,8 @@
       <file leaf-file-name="app2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="267" column="22" selection-start-line="267" selection-start-column="22" selection-end-line="267" selection-end-column="22" />
+            <state relative-caret-position="4947">
+              <caret line="294" column="8" selection-start-line="294" selection-start-column="8" selection-end-line="294" selection-end-column="8" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -50,17 +58,8 @@
       <file leaf-file-name="main_testing_components.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/main_testing_components.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1746">
-              <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Projects.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Projects.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2074">
-              <caret line="122" column="30" selection-start-line="122" selection-start-column="30" selection-end-line="122" selection-end-column="30" />
+            <state relative-caret-position="3111">
+              <caret line="183" column="41" selection-start-line="183" selection-start-column="41" selection-end-line="183" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -68,8 +67,8 @@
       <file leaf-file-name="Dashboard2.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/Dashboard2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="52" column="97" selection-start-line="52" selection-start-column="97" selection-end-line="52" selection-end-column="97" />
+            <state relative-caret-position="-408">
+              <caret line="73" column="87" lean-forward="true" selection-start-line="73" selection-start-column="87" selection-end-line="73" selection-end-column="87" />
             </state>
           </provider>
         </entry>
@@ -77,17 +76,26 @@
       <file leaf-file-name="SheetsDashboard.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/SheetsDashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4063">
-              <caret line="239" column="70" selection-start-line="239" selection-start-column="70" selection-end-line="239" selection-end-column="70" />
+            <state relative-caret-position="2227">
+              <caret line="131" column="50" selection-start-line="131" selection-start-column="50" selection-end-line="131" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dashboard.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Dashboard.html">
+      <file leaf-file-name="Teams.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/Teams.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-340">
-              <caret line="18" column="118" selection-start-line="18" selection-start-column="118" selection-end-line="18" selection-end-column="118" />
+            <state relative-caret-position="1462">
+              <caret line="86" column="63" selection-start-line="86" selection-start-column="63" selection-end-line="86" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/layout.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1037">
+              <caret line="61" selection-start-line="61" selection-end-line="61" />
             </state>
           </provider>
         </entry>
@@ -95,17 +103,26 @@
       <file leaf-file-name="sheets2.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/sheets2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="884">
-              <caret line="52" selection-start-line="52" selection-end-line="52" />
+            <state relative-caret-position="425">
+              <caret line="25" column="71" selection-start-line="25" selection-start-column="71" selection-end-line="25" selection-end-column="71" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="modal_testing.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/modal_testing.html">
+      <file leaf-file-name="login_template.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/login_template.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1139">
-              <caret line="67" column="39" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="39" />
+            <state relative-caret-position="1411">
+              <caret line="83" column="11" selection-start-line="83" selection-start-column="11" selection-end-line="83" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sheets.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/sheets.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="48" selection-start-column="48" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -117,8 +134,8 @@
       <list>
         <option value="Flask Main" />
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -159,10 +176,12 @@
         <option value="$PROJECT_DIR$/templates/login_template.html" />
         <option value="$PROJECT_DIR$/templates/Registration_template.html" />
         <option value="$PROJECT_DIR$/templates/Register.html" />
-        <option value="$PROJECT_DIR$/templates/main_testing_components.html" />
-        <option value="$PROJECT_DIR$/app2.py" />
         <option value="$PROJECT_DIR$/templates/SheetsDashboard.html" />
         <option value="$PROJECT_DIR$/templates/Projects.html" />
+        <option value="$PROJECT_DIR$/templates/main_testing_components.html" />
+        <option value="$PROJECT_DIR$/templates/layout.html" />
+        <option value="$PROJECT_DIR$/templates/Teams.html" />
+        <option value="$PROJECT_DIR$/app2.py" />
         <option value="$PROJECT_DIR$/templates/Dashboard2.html" />
       </list>
     </option>
@@ -223,10 +242,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\user\PycharmProjects" />
-      <recent name="C:\Users\user\PycharmProjects\untitled\templates" />
       <recent name="C:\Users\user\PycharmProjects\untitled\static" />
       <recent name="C:\Users\user\PycharmProjects\untitled\static\uploads" />
+      <recent name="C:\Users\user\PycharmProjects" />
+      <recent name="C:\Users\user\PycharmProjects\untitled\templates" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -351,7 +370,14 @@
       <option name="project" value="LOCAL" />
       <updated>1550604465891</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added logout feature">
+      <created>1550704274628</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1550704274628</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -368,53 +394,53 @@
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32972136" />
-      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50075644" side_tool="true" weight="0.35603714" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50226927" side_tool="true" weight="0.2647059" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32972136" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32972136" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4977307" visible="true" weight="0.2647059" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4977307" weight="0.017027864" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49924356" weight="0.32972136" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49884528" visible="true" weight="0.09909228" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49884528" visible="true" weight="0.25945538" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" sideWeight="0.5011547" side_tool="true" weight="0.11119516" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3993808" />
+      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="12" weight="0.32952693" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Coverage" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49848714" weight="0.32972136" />
-      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="12" weight="0.32952693" />
+      <window_info anchor="right" id="Coverage" order="3" side_tool="true" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17246597" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32972136" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.19659443" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32972136" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3993808" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="right" id="Coverage" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" weight="0.32884902" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32972136" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32972136" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="12" weight="0.32952693" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32972136" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -454,7 +480,8 @@
     <MESSAGE value="first commit for teesquare project" />
     <MESSAGE value="Cleaned up version of the software" />
     <MESSAGE value="HTML changes. Linked up Dashboard and SheetsDashboard" />
-    <option name="LAST_COMMIT_MESSAGE" value="HTML changes. Linked up Dashboard and SheetsDashboard" />
+    <MESSAGE value="added logout feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="added logout feature" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -469,32 +496,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/InstaPay_dashboard.html" />
-    <entry file="file://$PROJECT_DIR$/app.py" />
-    <entry file="file://$PROJECT_DIR$/templates/index.html" />
-    <entry file="file://$PROJECT_DIR$/templates/SampleTemplate.html" />
-    <entry file="file://$PROJECT_DIR$/app.py" />
-    <entry file="file://$PROJECT_DIR$/templates/index.html" />
-    <entry file="file://$PROJECT_DIR$/app.py" />
-    <entry file="file://$PROJECT_DIR$/templates/Dashboard_template.html" />
-    <entry file="file://$PROJECT_DIR$/templates/css/styles.css" />
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="12" lean-forward="true" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/search_results.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="52" column="12" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_ajax.googleapis.com_ajax_libs_jquery_3.3.1_jquery.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/../app2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2822">
@@ -506,13 +507,6 @@
     <entry file="file://$PROJECT_DIR$/templates/main.html" />
     <entry file="file://$PROJECT_DIR$/templates/Test_template.html" />
     <entry file="file://$PROJECT_DIR$/templates/SampleTemplate.html" />
-    <entry file="file://$PROJECT_DIR$/templates/sheets.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1766">
-          <caret column="48" selection-start-column="48" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/products.html" />
     <entry file="file://$PROJECT_DIR$/templates/Payment_template.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -555,31 +549,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/sheets2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/SheetsDashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4063">
-          <caret line="239" column="70" selection-start-line="239" selection-start-column="70" selection-end-line="239" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Registration_template.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
           <caret line="72" column="61" selection-start-line="72" selection-start-column="61" selection-end-line="72" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/login_template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="83" column="11" selection-start-line="83" selection-start-column="11" selection-end-line="83" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -590,34 +563,96 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app2.py">
+    <entry file="file://$PROJECT_DIR$/templates/Dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="118" selection-start-line="18" selection-start-column="118" selection-end-line="18" selection-end-column="118" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/uploads/team.svg" />
+    <entry file="file://$PROJECT_DIR$/static/engineer.svg" />
+    <entry file="file://$PROJECT_DIR$/static/collective.svg" />
+    <entry file="file://$PROJECT_DIR$/static/design.svg" />
+    <entry file="file://$PROJECT_DIR$/static/blueprint.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/Blueprints-min.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/pdf.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/team.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/file.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/square.svg" />
+    <entry file="file://$PROJECT_DIR$/templates/login_template.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1411">
+          <caret line="83" column="11" selection-start-line="83" selection-start-column="11" selection-end-line="83" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/sheets.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret line="267" column="22" selection-start-line="267" selection-start-column="22" selection-end-line="267" selection-end-column="22" />
+          <caret column="48" selection-start-column="48" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/sheets2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="71" selection-start-line="25" selection-start-column="71" selection-end-line="25" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="61" selection-start-line="61" selection-end-line="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/SheetsDashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2227">
+          <caret line="131" column="50" selection-start-line="131" selection-start-column="50" selection-end-line="131" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4947">
+          <caret line="294" column="8" selection-start-line="294" selection-start-column="8" selection-end-line="294" selection-end-column="8" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main_testing_components.html">
+    <entry file="file://$PROJECT_DIR$/templates/Teams.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1746">
-          <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
+        <state relative-caret-position="1462">
+          <caret line="86" column="63" selection-start-line="86" selection-start-column="63" selection-end-line="86" selection-end-column="63" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Dashboard.html">
+    <entry file="file://$PROJECT_DIR$/templates/main_testing_components.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-340">
-          <caret line="18" column="118" selection-start-line="18" selection-start-column="118" selection-end-line="18" selection-end-column="118" />
+        <state relative-caret-position="3111">
+          <caret line="183" column="41" selection-start-line="183" selection-start-column="41" selection-end-line="183" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Dashboard2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="52" column="97" selection-start-line="52" selection-start-column="97" selection-end-line="52" selection-end-column="97" />
+        <state relative-caret-position="-408">
+          <caret line="73" column="87" lean-forward="true" selection-start-line="73" selection-start-column="87" selection-end-line="73" selection-end-column="87" />
         </state>
       </provider>
     </entry>

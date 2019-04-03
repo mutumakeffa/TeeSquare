@@ -30,7 +30,11 @@ def allowed_file(filename):
 
 
 # we import pymysql
+# this is a connector to our database
 import pymysql
+
+# make a connection to the database only once
+connection = pymysql.connect("localhost", "root", "", "datasuit_db")
 
 
 # make route aware of methods to be received
@@ -53,7 +57,7 @@ def addsheet():
 
         # once the file is saved, save the link to the db
         # now we want to save this data in the database hence we have to import pymysql as the connector to the sql -top
-        connection = pymysql.connect("localhost", "root", "", "datasuit_db")
+        # connection = pymysql.connect("localhost", "root", "", "datasuit_db")
 
         # connection has true or false connection
         # create a cursor and use it to execute SQL --- Cursor helps to execute sql
@@ -78,7 +82,7 @@ def addsheet():
 @app2.route('/sheetsDashboard')
 def sheets_dashboard():
     # first connect to the database using pymysql
-    connection = pymysql.connect("localhost", "root", "", "datasuit_db")
+    # connection = pymysql.connect("localhost", "root", "", "datasuit_db")
 
     # we now use the cursor function to execute on the database
     cursor = connection.cursor()
@@ -147,7 +151,7 @@ def login():
         email_add = request.form['email_add']
         password = request.form['password']
 
-        connection = pymysql.connect("localhost", "root", "", "datasuit_db")
+        # connection = pymysql.connect("localhost", "root", "", "datasuit_db")
 
         cursor = connection.cursor()
 
@@ -196,7 +200,7 @@ def add_projects():
             project_status = request.form['project_status']
             project_location = request.form['project_location']
 
-            connection = pymysql.connect("localhost", "root", "", "datasuit_db")
+            # connection = pymysql.connect("localhost", "root", "", "datasuit_db")
 
             cursor = connection.cursor()
             sql = """INSERT INTO tbl_projects (project_name, project_code, project_status, project_location, email_add) VALUES (%s, %s, %s, %s, %s)"""
@@ -282,6 +286,12 @@ def projects():
         return redirect('/login')
     else:
         return redirect('/login')
+
+
+@app2.route('/teams')
+def teams():
+    if request.method == 'POST':
+        return ('Teams.html')
 
 # make sure to add a logout link to the website to clear sessions
 @app2.route('/logout')
