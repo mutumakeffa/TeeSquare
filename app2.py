@@ -100,6 +100,11 @@ def sheets_dashboard():
         return render_template('SheetsDashboard.html', data=rows)
 
 
+@app2.route('/viewSheets')
+def view_sheet():
+    return render_template('view_sheets.html')
+
+
 # make our routes return
 @app2.route('/')
 def main():
@@ -294,6 +299,7 @@ def projects():
 def teams():
     if request.method == 'POST':
         return ('Teams.html')
+
 
 # make sure to add a logout link to the website to clear sessions
 @app2.route('/logout')
