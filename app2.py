@@ -112,6 +112,7 @@ def register():
     if request.method == 'POST':
         f_name = request.form['f_name']
         l_name = request.form['l_name']
+        company_name = request.form['companyName']
         email_add = request.form['email_add']
         password1 = request.form['password1']
         password2 = request.form['password2']
@@ -127,14 +128,14 @@ def register():
 
             cursor = connection.cursor()
 
-            sql = """INSERT INTO tbl_register(f_name, l_name, email_add, password) VALUES(%s, %s, %s, %s)"""
+            sql = """INSERT INTO tbl_register(f_name, l_name, company_name, email_add, password) VALUES(%s, %s, %s, %s, %s)"""
 
             # cursor() method is used to execute on sql
             # commit/rollback -if the connection crashes before it commits, it should render back
 
             # lets try and catch errors during commit and execution
             try:
-                cursor.execute(sql, (f_name, l_name, email_add, password1))
+                cursor.execute(sql, (f_name, l_name, company_name, email_add, password1))
                 connection.commit()
                 return redirect('/login')
             except:
