@@ -1,7 +1,7 @@
 import os
 from os.path import join, dirname, realpath
 
-from flask import Flask, render_template, request, redirect, session, flash
+from flask import Flask, render_template, request, redirect, session, send_file
 
 # we create a flask application parsing its name
 app2 = Flask(__name__)
@@ -104,8 +104,14 @@ def sheets_dashboard():
 
 
 @app2.route('/viewSheets')
-def view_sheet():
+def view_sheets():
     return render_template('view_sheets.html')
+
+
+# this route will enable us to download the file
+@app2.route('/file_download')
+def file_download():
+    return send_file('../static/uploads/')  # specify the file path here
 
 
 # make our routes return
@@ -298,8 +304,50 @@ def projects():
 
 @app2.route('/teams')
 def teams():
+    return render_template('Teams.html')
+
+
+@app2.route('/add_image', methods=['POST'])
+def add_image():
     if request.method == 'POST':
-        return ('Teams.html')
+        image_file = request.files['file']
+        image_name = request.form['image_name']
+        image_desc = request.form['image_desc']
+        tag = request.form['tag']
+
+        # connect to the db and insert into it
+        cursor = connection.cursor()
+        sql = """INSERT INTO tbl_images (image_file, image_name, image_desc, tag) VALUES (%s, %s, %s, %s)"""
+
+        try:
+            cursor.execute(sql, (image_file, image_name, image_desc, tag))
+            connection.commit()
+            return redirect("/images")
+        except:
+            connection.commit()
+            return render_template('Images.html', msg="Error during transimmission")
+
+    else:
+        return render_template('Images.html')
+
+
+@app2.route('/images')
+def images():
+    # since we already have a connection to the database, we execute using the cursor fxn
+    cursor = connection.cursor()
+
+    sql = """SELECT * FROM tbl_images ORDER BY date_posted DESC """  # shows records in descending order or use ASC
+
+    cursor.execute(sql)
+
+    rows = cursor.fetchall()  # rows can contain 0,1 or more rows
+
+    # perform a row count
+    if cursor.rowcount == 0:
+        return render_template('Images.html', msg='No records')
+    else:
+        return render_template('Images.html', data=rows)
+
 
 
 # make sure to add a logout link to the website to clear sessions
