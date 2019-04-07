@@ -1,7 +1,7 @@
 import os
 from os.path import join, dirname, realpath
 
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, flash
 
 # we create a flask application parsing its name
 app2 = Flask(__name__)
@@ -15,11 +15,13 @@ from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = join(dirname(realpath(__file__)), 'static/uploads/')  # create path where the image file will be saved
 # specify allowed extensions
-ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg'}
+ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg', 'doc', 'docx'}
 
 # configure upload folder in the app
 app2.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app2.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
+
+
+# app2.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
 
 
 # this function is used to check if the allowed image extensions has been met
@@ -38,6 +40,7 @@ connection = pymysql.connect("localhost", "root", "", "datasuit_db")
 
 
 # make route aware of methods to be received
+# this route is for uploading files to the file system then saving the file path to the database
 @app2.route('/addSheets', methods=['POST', 'GET'])
 def addsheet():
     # We first have to check the methods sent either POST or Get so that we can extract the data sent. We do this by importing a module called request
@@ -176,10 +179,8 @@ def login():
             return redirect('/projects')
 
         else:
-            return render_template('login_template.html', msg6="Something went Wrong. sorry for the Inconvinience "
-                                                               "with the system! We are trying to resolve the Issue. "
-                                                               "Contact support at +254716681166 and "
-                                                               " we will resolve the issue as soon as possible")
+            return render_template('login_template.html', msg6='Something went Wrong. sorry for the inconvinience '
+                                                               'Contact support at +254716681166')
     else:
         return render_template('login_template.html')
 
@@ -240,7 +241,7 @@ def search():
         # Validate your passwords
         # if project_name=="":
 
-        connection = pymysql.connect("localhost", "root", "", "datasuit_db")
+        # connection = pymysql.connect("localhost", "root", "", "datasuit_db")
 
         cursor = connection.cursor()
 
@@ -272,7 +273,7 @@ def projects():
         # if not
         # check algorithms to encrypt passwords Bcrypt
 
-        connection = pymysql.connect("localhost", "root", "", "datasuit_db")
+        # connection = pymysql.connect("localhost", "root", "", "datasuit_db")
 
         cursor = connection.cursor()
 

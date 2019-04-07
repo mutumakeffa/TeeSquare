@@ -27,23 +27,23 @@
                     </li>
 
                     <li>
-                      <a href="#" class="pl-4"> Documents </a>
+                        <a href="/documents" class="pl-4"> Documents </a>
                     </li>
 
                     <li>
-                      <a href="#" class="pl-4"> Field Reports </a>
+                        <a href="/reports" class="pl-4"> Field Reports </a>
                     </li>
 
                     <li>
-                         <a href="#" class="pl-4"> Issues </a>
+                        <a href="/issues" class="pl-4"> Issues </a>
                     </li>
 
                     <li>
-                      <a href="#" class="pl-4"> Images </a>
+                        <a href="/images" class="pl-4"> Images </a>
                     </li>
 
                     <li>
-                         <a href="#" class="pl-4"> Team Members</a>
+                        <a href="/team" class="pl-4"> Team Members</a>
                     </li>
                 </ul>
             </div>
@@ -109,7 +109,7 @@
                                                     <div class="form-group col-md-6">
                                                       <label for="SheetNumber" style="font-weight: 600; color: rgba(0,0,0,0.5);">Sheet Number</label>
                                                         <input name="sheetNumber" class="form-control" id="SheetNumber"
-                                                               placeholder="ex. A2020">
+                                                               placeholder="ex. A2020" required="required">
                                                     </div>
                                                   </div>
 
@@ -163,7 +163,7 @@
                             <tr class="thead-light" style="color: #474e5d; font-weight: 600">
                                 <td>Title</td>
                                 <td>sheet Number</td>
-                                <td>Version</td>
+                                <td>file</td>
                                 <td>Description</td>
                                 <td>Tag</td>
                                 <td>edited by</td>
@@ -174,7 +174,7 @@
                                 <tr>
                                     <td style="font-weight: 600;"> {{ row[1] }}</td>  <!-- Sheet Title -->
                                     <td> {{ row[2] }}</td>   <!-- Sheet Number-->
-                                    <td>12</td> <!-- version  -->
+                                    <td>{{ row[0] }}</td> <!-- filename -->
                                     <td> {{ row[3] }}</td> <!-- description -->
                                     <td> {{ row[4] }}</td>  <!-- Tag -->
                                     <td> Ex Admin</td>   <!-- Edited_by -->
