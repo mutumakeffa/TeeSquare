@@ -91,6 +91,7 @@ def sheets_dashboard():
     cursor = connection.cursor()
 
     sql = """SELECT * FROM tbl_sheets ORDER BY edited_when DESC """  # shows records in descending order or use ASC
+    # sql = """SELECT * FROM tbl_projects WHERE project_code = %s """
 
     cursor.execute(sql)
 
@@ -191,8 +192,10 @@ def login():
         return render_template('login_template.html')
 
 
+# @app2.route('/Dashboard/<code>')       to give that route its own unique route
 @app2.route('/Dashboard')
-def dashboard():
+def dashboard(code):
+    print(code)
     return render_template('Dashboard2.html')
 
 
@@ -283,9 +286,12 @@ def projects():
 
         cursor = connection.cursor()
 
-        sql = """SELECT * FROM tbl_projects WHERE email_add = %s  ORDER BY time_created DESC """  # shows records in descending order / ASC
+        sql = """SELECT * FROM tbl_projects WHERE email_add = %s ORDER BY time_created DESC """  # shows records in descending order / ASC
         email = session['key']
-        cursor.execute(sql, (email))
+        cursor.execute(sql, email)
+
+        # define a session key that tracks each individual project key to separate the projects
+
 
         # fetch rows
         rows = cursor.fetchall()  # rows can contain 0,1 or more rows
@@ -303,6 +309,9 @@ def projects():
 
 
 @app2.route('/teams')
+# make sure to protect this with a project session
+# the session will only specify what project you are currently in.
+#All team mates invited are only invited in this particular session
 def teams():
     return render_template('Teams.html')
 
