@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>images</title>
+    <title>Dashboard</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="nav-side-menu">
@@ -20,7 +23,7 @@
                 <a href="/Dashboard" class="pl-4"> Dashboard </a>
             </li>
 
-            <li>
+            <li class="active">
                 <a href="/sheetsDashboard" class="pl-4"> Sheets </a>
             </li>
 
@@ -29,14 +32,14 @@
             </li>
 
             <li>
-                <a href="#" class="pl-4"> Field Reports </a>
+                <a href="/Field" class="pl-4"> Field Reports </a>
             </li>
 
             <li>
                 <a href="/issue" class="pl-4"> Issues </a>
             </li>
 
-            <li class="active">
+            <li>
                 <a href="/images" class="pl-4"> Images </a>
             </li>
 
@@ -54,67 +57,64 @@
     <main class="m-1 p-2" style="background:whitesmoke; color: #555555;">
         <nav class="navbar navbar-light bg-light p-0 ">
             <div class="container-fluid">
+                        <span class="navbar-text">
+                            <h5 class=" p-0 m-0" style="font-weight: bold">Field reports</h5>
+                        </span>
                 <span class="navbar-text">
-                    <h5 class=" p-0 m-0" style="font-weight: bold">Images</h5>
-                </span>
+                            <form action="/search" method="post" class="form-inline p-0 m-0 justify-content-center">
+                            <div>
+                                <input class="form-control  form-group-lg mr-sm-2 p-1 pl-2 pr-2" type="search"
+                                       placeholder="Search sheets by name or Code" aria-label="Search"
+                                       style="text-align: center; font-size: .9rem; " name="search">
+                                <button class="btn btn-outline-success my-2 my-sm-0 p-1 pl-3 pr-3" type="submit"
+                                        style="font-size: .9rem">Search</button>
+                            </div>
+                            </form>
+                        </span>
                 <span class="navbar-text">
-                    <form action="/search" method="post" class="form-inline p-0 m-0 justify-content-center">
-                        <div>
-                            <input class="form-control  form-group-lg mr-sm-2 p-1 pl-2 pr-2" type="search"
-                                   placeholder="Search images by name or number" aria-label="Search"
-                                   style="text-align: center; font-size: .9rem; " name="search">
-                            <button class="btn btn-outline-success my-2 my-sm-0 p-1 pl-3 pr-3" type="submit"
-                                    style="font-size: .9rem">Search</button>
-                        </div>
-                    </form>
-                </span>
-                <span class="navbar-text">
-                <button class="btn btn-success p-1 pl-3 pr-3 mr-5" style="font-size: .9rem" data-toggle="modal"
-                        data-target="#myModal">Upload new Image</button>
-                </span>
+                            <button class="btn btn-success p-1 pl-3 pr-3 mr-5" style="font-size: .9rem"
+                                    data-toggle="modal" data-target="#myModal">Upload daily report</button>
+                        </span>
             </div>
         </nav>
 
         <!-- Modal one -->
         <div class="modal fade" id="myModal">
-            <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
 
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Upload image</h4>
+                        <h4 class="modal-title">Upload new report</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
                     <!-- Modal body -->
-                    <form action="/add_image" method="post" enctype="multipart/form-data">
+                    <form action="/add_field" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
                             <div class="container">
                                 <div class="row">
                                     <!--<div class="col-lg-8 col-sm-12 col-11 main-section"> -->
                                     <div class="col-lg-12 col-md-8 col-sm-12 main-section">
                                         <h1 class="text-center"
-                                            style="font-size:32px; font-weight: 600; color: rgba(0,0,0,0.5);">File
-                                            Input </h1><br>
+                                            style="font-size:32px; font-weight: 600; color: rgba(0,0,0,0.5);">File and
+                                            data input </h1><br>
                                         <div class="form-group">
-                                            <!--  inputs for the sheet     -->
-                                            <div class="form-group col-md-12">
-                                                <label for="Image_upload"
-                                                       style="font-weight: 600; color: rgba(0,0,0,0.5);">Upload
-                                                    image</label>
-                                                <br/>
-                                                <input name="image_file" type="file" multiple class="file"
-                                                       data-overwrite-initial="false" data-min-file-count="2"
-                                                       style="color: #3f4c6b">
-                                            </div>
-
                                             <div class="form-row">
-                                                <div class="form-group col-md-12">
-                                                    <label for="image_name"
-                                                           style="font-weight: 600; color: rgba(0,0,0,0.5);">Image
-                                                        name</label>
-                                                    <input name="image_name" class="form-control" id="image_name"
-                                                           placeholder="ex. first floor image">
+                                                <div class="form-group col-md-6">
+                                                    <label for="Title"
+                                                           style="font-weight: 600; color: rgba(0,0,0,0.5);">Title</label>
+                                                    <input name="title" class="form-control"
+                                                           placeholder="ex. Monday field inspection">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="Frequency"
+                                                           style="font-weight: 600; color: rgba(0,0,0,0.5);">Frequency</label>
+                                                    <select name="frequency" id="frequency" class="form-control">
+                                                        <option selected>Daily report</option>
+                                                        <option>Weekly report</option>
+                                                        <option>Monthly report</option>
+                                                    </select>
                                                 </div>
                                             </div>
 
@@ -122,21 +122,30 @@
                                                 <label for="Description"
                                                        style="font-weight: 600; color: rgba(0,0,0,0.5);">Short
                                                     Description</label>
-                                                <input name="image_desc" type="text" class="form-control"
-                                                       id="image_desc" placeholder="cracks noticed">
+                                                <textarea name="description" id="description" class="form-control"
+                                                          cols="70" rows="3"
+                                                          placeholder="Floor Plan 1 changes"></textarea>
                                             </div>
-
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                     <label for="Tag" style="font-weight: 600; color: rgba(0,0,0,0.5);">Tag
                                                         e.x civil or architectural</label>
-                                                    <select name="tag" id="tag" class="form-control">
+                                                    <select name="tag" id="Tag" class="form-control">
                                                         <option selected>#Civil</option>
                                                         <option>#Architectural</option>
                                                         <option>#Electrical</option>
                                                         <option>#Other</option>
                                                     </select>
                                                 </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="file" style="font-weight: 600; color: rgba(0,0,0,0.5);">Attach
+                                                        files</label>
+                                                    <br/>
+                                                    <input name="file" type="file" multiple class="file form-control"
+                                                           data-overwrite-initial="false" data-min-file-count="2"
+                                                           style="color: #3f4c6b">
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -150,7 +159,7 @@
                                 <button type="button" class="btn btn-secondary p-2 pl-4 pr-4" data-dismiss="modal">
                                     Cancel
                                 </button>
-                                <button type="submit" class="btn btn-success p-2 pl-4 pr-4">upload</button>
+                                <button type="submit" class="btn btn-success p-2 pl-4 pr-4">Post report</button>
                             </div>
                         </div>
                     </form>
@@ -159,75 +168,37 @@
         </div>
         <!-- End of Modal one section -->
 
-        <!-- Section for display images -->
-        <h5 style="color: darkred">{{ msg }}</h5>
-        <form action="/images">
-        <section class="row mt-5">
-            {% for row in data %}
+        <!-- List of field reports -->
+        <form action="/Field">
+            <div class="container mt-5 table-responsive">
+                <table class="table"
+                       style="color: #8595A1; font-size: 16px; box-shadow: inset 0 -1px 0 0 #E0E7ED; background: white;">
+                    <thead>
+                    <tr class="thead-light" style="color: #474e5d; font-weight: 600">
+                        <td>Report title</td>
+                        <td>Frequency</td>
+                        <td>Description</td>
+                        <td>File</td>
+                        <td>Tag</td>
+                        <td>Posted</td>
+                    </tr>
+                    </thead>
 
-                <div class="col-md-3">
-                    <div class="card h-100 shadow rounded">
-                        <div class="img-container">
-                            <img src="../static/uploads/images/{{ row[1] }}" class="img-fluid" alt="Image"
-                                 style="height: auto; width: 100%">
-                            <button class="btn btn-primary mt-2" data-toggle="modal" data-target="#ModalImg">View
-                            </button>
-                            <style>
-                                .img-container .btn {
-                                    position: absolute;
-                                    top: 7%;
-                                    left: 85%;
-                                    transform: translate(-50%, -50%);
-                                    -ms-transform: translate(-50%, -50%);
-                                    color: white;
-                                    background-color: lightcoral;
-                                    font-size: .95em;
-                                    border: none;
-                                    cursor: pointer;
-                                    border-radius: 5px;
-                                }
-
-                                .img-container .btn:hover {
-                                    background-color: orangered;
-                                }
-                            </style>
-                            <!-- Modal -->
-
-                            <div class="modal" id="ModalImg" tabindex="-1">
-                                <div class="modal-dialog modal-dialog-centered modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="container-fluid">
-                                                ----------
-                                                <span>
-                                                this is the modal body where the images will be viewed
-                                            </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End of modal section -->
-
-
-                        </div>
-                        <div class="card-body">
-                            Image name: {{ row[2] }}
-                            description: {{ row[3] }}
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-
-        </section>
+                    {% for row in data %}
+                        <tr>
+                            <td style="font-weight: 600;"> {{ row[1] }}</td>  <!-- Title -->
+                            <td> {{ row[2] }}</td>   <!--Frequency-->
+                            <td>{{ row[3] }}</td> <!-- Description -->
+                            <td> {{ row[4] }}</td> <!-- File -->
+                            <td> {{ row[5] }}</td>  <!-- Tag -->
+                            <td> {{ row[6] }}</td>  <!-- Date -->
+                            <!-- <td><a href="/viewReport" style="text-decoration: none" class="btn-sm btn-primary p-1 pl-2 pr-2">View sheet</a></td> -->
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </form>
-        <!-- End of display images -->
-
+        <!-- End of Projects Table -->
     </main>
 </div>
 </body>
@@ -353,9 +324,5 @@
     }
 
 </style>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 </html>

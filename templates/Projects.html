@@ -59,8 +59,11 @@
             <form action="/add_projects" method="post">
                 <div class="modal-body">
 
-                        <input type="text" class="form-control mb-3" name="project_name" placeholder="Enter Project name" style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem; ">
-                        <input type="text" class="form-control mb-3" name="project_code" placeholder="Enter Project code. code must be unique ...  fce324" style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem;">
+                    <input type="text" class="form-control mb-3" name="project_name" placeholder="Enter Project name"
+                           style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem; ">
+                    <input type="text" class="form-control mb-3" name="project_code"
+                           placeholder="Enter Project code. code must be unique ...  fce324"
+                           style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem;">
                     <select id="Tag" class="form-control mb-3"
                             style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem;"
                             name="project_status">
@@ -70,8 +73,8 @@
                         <option>In progress</option>
                         <option>Complete</option>
                     </select>
-                    <!-- <input type="text" class="form-control mb-3" name="project_status" placeholder="project status ...  in progress" style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem;"> -->
-                        <input type="text" class="form-control mb-3" name="project_location" placeholder="project location" style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem;">
+                    <input type="text" class="form-control mb-3" name="project_location" placeholder="project location"
+                           style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem;">
 
                 </div>
                 <!-- Modal footer -->
@@ -120,9 +123,12 @@
                 <td>5</td>
                 <td> {{ row[2] }}</td>
                 <td>  </td>
-                <td><a href="/Dashboard/{{ row[1] }}" style="text-decoration: none"
-                       class="btn-sm btn-primary p-1 pl-2 pr-2">Launch
-                    project</a></td>
+                <td>
+                    {#                    <a href="/Dashboard/{{ row[1] }}" style="text-decoration: none" class="btn-sm btn-primary p-1 pl-2 pr-2">Launch project</a> #}
+                    {#                    the code above specifies the route to be taken to a specific path. For now we will just utilize the generic paths #}
+                    <a href="/Dashboard" style="text-decoration: none" class="btn-sm btn-primary p-1 pl-2 pr-2">Launch
+                        project</a>
+                </td>
             </tr>
             {% endfor %}
             </tbody>

@@ -32,10 +32,10 @@
             </li>
 
             <li>
-                <a href="#" class="pl-4"> Field Reports </a>
+                <a href="/Field" class="pl-4"> Field Reports </a>
             </li>
 
-            <li>
+            <li class="active">
                 <a href="/issue" class="pl-4"> Issues </a>
             </li>
 
@@ -43,7 +43,7 @@
                 <a href="/images" class="pl-4"> Images </a>
             </li>
 
-            <li class="active">
+            <li>
                 <a href="/teams" class="pl-4"> Team Members</a>
             </li>
         </ul>
@@ -58,7 +58,7 @@
         <nav class="navbar navbar-light bg-light p-0 ">
             <div class="container-fluid">
                 <span class="navbar-text">
-                    <h5 class=" p-0 m-0" style="font-weight: bold">Teams</h5>
+                    <h5 class="p-0 m-0" style="font-weight: bold">Issues</h5>
                 </span> <br>
                 <span class="navbar-text">
                 <form action="/search" method="post" class="form-inline p-0 m-0 justify-content-center">
@@ -72,70 +72,72 @@
                 </form>
                 </span>
                 <span class="navbar-text">
-                    <button class="btn btn-outline-light p-1 pl-3 pr-3 mr-5" style="font-size: .9rem"
-                            data-toggle="modal" data-target="#myModal">Add team members</button>
+                    <button class="btn btn-success-outline p-1 pl-3 pr-3 mr-5" style="font-size: .9rem"
+                            data-toggle="modal" data-target="#myModal">Post a new issue</button>
                 </span>
             </div>
         </nav>
 
 
+        <form action="/add_issue" method="post">
+            <div class="form-group container">
+                <input class="col-md-8 offset-2 mb-2 mt-5 form-control" type="text" name="title"
+                       placeholder="Subject or title">
+                <textarea class="col-md-8 offset-2 form-control" name="desc" style="align-items: center" rows="8"
+                          cols="80"
+                          placeholder="Describe your issue here, attach relevant files related to the issue and post ..."></textarea>
+
+                <div class="form-group">
+                    <input class="col-md-4 offset-2 form-control " type="file" name="file">
+                    <label for="Tag" style="font-weight: 600; color: rgba(0,0,0,0.5);">Tag</label>
+                    <select id="Tag" class="col-md-4 form-control "
+                            style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem;"
+                            name="tag">
+                        <option selected>#Civil</option>
+                        <option>#Architecture</option>
+                        <option>#Mechanical</option>
+                        <option>#Electrical</option>
+                        <option>#Other</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-info col-md-8 offset-2 mt-2">Post</button>
+            </div>
+        </form>
+
+        <form action="/issue">
             <div class="container mt-5 table-responsive">
-                <table class="table "
+                <table class="table"
                        style="color: #8595A1; font-size: 16px; box-shadow: inset 0 -1px 0 0 #E0E7ED; background: white;">
+                    <h5 align="center"><b>You can view all the issues posted below: </b></h5>
+                    <h6>Status: {{ msg }}</h6>
                     <thead>
-                    <form action="/add_team" method="post">
-                        <tr style="background-color: beige">
-                            <td><input name="email" class="form-control  form-group-lg mr-sm-2 p-2 pl-2 pr-2"
-                                       placeholder="Type user email address to send an invite"
-                                       style="text-align: center; font-size: .9rem; "></td>
-                            <td>
-                                <select name="tag" id="Tag" class="form-control">
-                                    <option>#civil</option>
-                                    <option>#architecture</option>
-                                    <option>#mechanical</option>
-                                    <option>#electrical</option>
-                                    <option>#other</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select name="access" id="access" class="form-control">
-                                    <option>Admin</option>
-                                    <option selected>Member</option>
-                                </select>
-                            </td>
-                            <td>
-                                <button type="submit" class="btn btn-success p-1 pl-3 pr-3 mr-5"
-                                        style="box-shadow: .3em .3em .3em black">
-                                    send invite
-                                </button>
-                            </td>
-                        </tr>
-                    </form>
-
-                    <tr style="color: #474e5d; font-weight: 600">
-                        <td>Email</td>
-                        <td>role</td>
-                        <td>Access</td>
-                        <td>status</td>
+                    <tr style="background-color: beige">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
-
+                    <tr style="color: #474e5d; font-weight: 600">
+                        <td>Issue Number</td>
+                        <td>Title</td>
+                        <td>tag</td>
+                        <td>File attached</td>
+                        <td>Date posted</td>
+                    </tr>
                     </thead>
-
-                    <form action="/team"></form>
 
                     {% for row in data %}
                         <tr>
-                            <td style="font-weight: 600;"> {{ row[1] }}</td>  <!-- email -->
-                            <td> {{ row[2] }}</td>   <!-- Role-->
-                            <td>{{ row[3] }}</td> <!-- access -->
-                            <td> {{ row[4] }}</td> <!-- status-->
+                            <td style="font-weight: 600;"> {{ row[0] }}</td>  <!-- Issue number -->
+                            <td> {{ row[1] }}</td>   <!-- Title-->
+                            <td>{{ row[4] }}</td> <!-- Tag-->
+                            <td>{{ row[3] }}</td>
+                            <td> {{ row[5] }}</td> <!-- Date posted-->
                         </tr>
                     {% endfor %}
-
-                    </form>
                 </table>
             </div>
-
+        </form>
         <!-- End of Projects Table -->
     </main>
 </div>

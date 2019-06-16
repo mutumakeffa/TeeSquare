@@ -15,13 +15,12 @@ from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = join(dirname(realpath(__file__)), 'static/uploads/')  # create path where the image file will be saved
 # specify allowed extensions
-ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg', 'doc', 'docx'}
+ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg', 'doc'}
 
 # configure upload folder in the app
 app2.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-
-# app2.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
+app2.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
 
 
 # this function is used to check if the allowed image extensions has been met
@@ -192,10 +191,14 @@ def login():
         return render_template('login_template.html')
 
 
-# @app2.route('/Dashboard/<code>')       to give that route its own unique route
+# @app2.route('/Dashboard/<code>')       #to give that route its own unique route
+# def dashboard(code):
+#     print(code)
+#     return render_template('Dashboard2.html')
+
+
 @app2.route('/Dashboard')
-def dashboard(code):
-    print(code)
+def dashboard():
     return render_template('Dashboard2.html')
 
 
@@ -243,7 +246,6 @@ def add_projects():
 @app2.route('/search', methods=['POST', 'GET'])
 def search():
     if request.method == 'POST':
-
         project_name = request.form['search']
         project_code = request.form['search']
 
@@ -292,7 +294,6 @@ def projects():
 
         # define a session key that tracks each individual project key to separate the projects
 
-
         # fetch rows
         rows = cursor.fetchall()  # rows can contain 0,1 or more rows
 
@@ -308,33 +309,84 @@ def projects():
         return redirect('/login')
 
 
+@app2.route('/add_team', methods=['POST', 'GET'])
+def add_team():
+    if request.method == 'POST':
+        email = request.form['email']
+        tag = request.form['tag']
+        access = request.form['access']
+
+        # connect to the database, insert into Database and execute
+        cursor = connection.cursor()
+
+        sql = """INSERT INTO tbl_team (email, tag, access) VALUES (%s, %s, %s)"""
+
+        try:
+            cursor.execute(sql, (email, tag, access))
+            connection.commit()
+            return redirect('/teams')
+        except:
+            connection.commit()
+            return render_template('Teams.html')
+
+    else:
+        return render_template('Teams.html')
+
+
 @app2.route('/teams')
 # make sure to protect this with a project session
 # the session will only specify what project you are currently in.
-#All team mates invited are only invited in this particular session
+# All team mates invited are only invited in this particular session
 def teams():
-    return render_template('Teams.html')
+    # connect to the database and select the required fields
+    cursor = connection.cursor()
+
+    sql = """SELECT * FROM tbl_team ORDER BY date_posted DESC """
+
+    cursor.execute(sql)
+
+    rows = cursor.fetchall()
+
+    # perform a row count
+    if cursor.rowcount == 0:
+        return render_template('Teams.html', msg='No records')
+    else:
+        return render_template('Teams.html', data=rows)
 
 
-@app2.route('/add_image', methods=['POST'])
+# path to upload images
+UPLOAD_FOLDER2 = join(dirname(realpath(__file__)),
+                      'static/uploads/images')  # create path where the image file will be saved
+
+# configure upload folder in the app
+app2.config['UPLOAD_FOLDER2'] = UPLOAD_FOLDER2
+
+
+@app2.route('/add_image', methods=['POST', 'GET'])
 def add_image():
     if request.method == 'POST':
-        image_file = request.files['file']
+        image_file = request.files['image_file']
         image_name = request.form['image_name']
         image_desc = request.form['image_desc']
         tag = request.form['tag']
 
+        # check if file is present and allowed
+        if image_file and allowed_file(image_file.filename):
+            filename = secure_filename(image_file.filename)
+            # save the file with its filename
+            image_file.save(os.path.join(app2.config['UPLOAD_FOLDER2'], filename))
+
         # connect to the db and insert into it
         cursor = connection.cursor()
-        sql = """INSERT INTO tbl_images (image_file, image_name, image_desc, tag) VALUES (%s, %s, %s, %s)"""
+        sql = """INSERT INTO tbl_images (img_file, img_name, img_desc, tag) VALUES (%s, %s, %s, %s)"""
 
         try:
-            cursor.execute(sql, (image_file, image_name, image_desc, tag))
+            cursor.execute(sql, (filename, image_name, image_desc, tag))
             connection.commit()
-            return redirect("/images")
+            return redirect('/images')
         except:
             connection.commit()
-            return render_template('Images.html', msg="Error during transimmission")
+            return render_template('Images.html', msg="Error during transmission..try again")
 
     else:
         return render_template('Images.html')
@@ -358,6 +410,158 @@ def images():
         return render_template('Images.html', data=rows)
 
 
+@app2.route('/add_document', methods=['POST', 'GET'])
+def add_document():
+    if request.method == 'POST':
+        file = request.files['file']
+        title = request.form['doc_title']
+        desc = request.form['doc_desc']
+        tag = request.form['tag']
+
+        # check if file is present and allowed
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            # save the file with its filename
+            file.save(os.path.join(app2.config['UPLOAD_FOLDER'], filename))
+
+        # connect to the database, insert and execute
+        cursor = connection.cursor()
+
+        sql = """INSERT INTO tbl_documents (file, doc_title, doc_desc, tag) VALUES (%s,%s,%s,%s)"""
+
+        try:
+            cursor.execute(sql, (filename, title, desc, tag))
+            connection.commit()
+            return redirect('/Document')
+        except:
+            connection.commit()
+            return render_template('Documents.html', msg="Error during transmission..try again")
+    else:
+        return render_template('Documents.html')
+
+
+@app2.route('/Document')
+def documents():
+    # Firstly connect to the database
+    cursor = connection.cursor()
+
+    # select from the db
+    sql = """SELECT * FROM tbl_documents ORDER BY date_posted DESC """
+
+    cursor.execute(sql)
+
+    rows = cursor.fetchall()  # rows can contain 0,1 or more rows
+
+    # perform a row count
+    if cursor.rowcount == 0:
+        return render_template('Documents.html', msg='No records')
+    else:
+        return render_template('Documents.html', data=rows)
+
+
+@app2.route('/add_issue', methods=['POST', 'GET'])
+def add_issue():
+    if request.method == 'POST':
+        title = request.form['title']
+        desc = request.form['desc']
+        file = request.files['file']
+        tag = request.form['tag']
+
+        # check if file is present and allowed
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            # save the file with its filename
+            file.save(os.path.join(app2.config['UPLOAD_FOLDER'], filename))
+
+        # since we already have a connection to the database, we execute using the cursor fxn
+        cursor = connection.cursor()
+        sql = """INSERT INTO tbl_issues(title, description, file, tag) VALUES (%s,%s,%s,%s) """
+
+        try:
+            cursor.execute(sql, (title, desc, filename, tag))
+            connection.commit()
+            return redirect('/issue')
+        except:
+            connection.commit()
+            return render_template('Issues.html', msg="Error during transmission..try again")
+
+    else:
+        return render_template('Issues.html')
+
+
+@app2.route('/issue')
+def issue():
+    # first connect to the database
+    cursor = connection.cursor()
+
+    # then select and execute
+    sql = """SELECT * FROM tbl_issues ORDER BY date_posted DESC """
+
+    cursor.execute(sql)
+
+    rows = cursor.fetchall()  # rows can contain 0,1 or more rows
+
+    # perform a row count
+    if cursor.rowcount == 0:
+        return render_template('Issues.html', msg='No records')
+    else:
+        return render_template('Issues.html', data=rows)
+
+
+@app2.route('/add_field', methods=['POST', 'GET'])
+def add_field():
+    if request.method == 'POST':
+        title = request.form['title']
+        frequency = request.form['frequency']
+        description = request.form['description']
+        file = request.files['file']
+        tag = request.form['tag']
+
+        # check if file is present and allowed
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            # save the file with its filename
+            file.save(os.path.join(app2.config['UPLOAD_FOLDER'], filename))
+
+        # connect to the database, insert into the database and execute
+        cursor = connection.cursor()
+
+        sql = """INSERT INTO tbl_fields (title, frequency, description, file, tag) VALUES (%s,%s,%s,%s,%s)"""
+
+        try:
+            cursor.execute(sql, (title, frequency, description, filename, tag))
+            connection.commit()
+            return redirect('/Field')
+        except:
+            connection.commit()
+            return render_template('Field.html')
+    else:
+        return render_template('Field.html')
+
+
+@app2.route('/Field')
+def field():
+    # connect to the database and select the rows
+    cursor = connection.cursor()
+
+    sql = """SELECT * FROM tbl_fields ORDER BY date_posted DESC"""
+
+    cursor.execute(sql)
+
+    rows = cursor.fetchall()
+
+    # perform a row count
+    if cursor.rowcount == 0:
+        return render_template('Field.html', msg='No records')
+    else:
+        return render_template('Field.html', data=rows)
+
+
+@app2.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
+
 
 # make sure to add a logout link to the website to clear sessions
 @app2.route('/logout')
@@ -380,6 +584,6 @@ sudo /opt/lampp/lampp start
 
 then go to http://localhost/dashboard/phpmyadmin  to access the database
 
-to host your application, host it in Heruku or python anywhere
+to host your application, host it in Heroku or python anywhere
 
 '''
