@@ -78,34 +78,35 @@
             </div>
         </nav>
 
-
-        <form action="/add_issue" method="post">
-            <div class="form-group container">
-                <input class="col-md-8 offset-2 mb-2 mt-5 form-control" type="text" name="title"
-                       placeholder="Subject or title">
-                <textarea class="col-md-8 offset-2 form-control" name="desc" style="align-items: center" rows="8"
-                          cols="80"
-                          placeholder="Describe your issue here, attach relevant files related to the issue and post ..."></textarea>
-
-                <div class="form-group">
-                    <input class="col-md-4 offset-2 form-control " type="file" name="file">
-                    <label for="Tag" style="font-weight: 600; color: rgba(0,0,0,0.5);">Tag</label>
-                    <select id="Tag" class="col-md-4 form-control "
-                            style="width: 100%; border: 1px solid #E0E7ED; border-radius: 3px; font-size: .9rem;"
-                            name="tag">
-                        <option selected>#Civil</option>
-                        <option>#Architecture</option>
-                        <option>#Mechanical</option>
-                        <option>#Electrical</option>
-                        <option>#Other</option>
-                    </select>
+        <form action="/add_issue" method="post" enctype="multipart/form-data">
+            <div class="container">
+                <div class="row">
+                    <!--<div class="col-lg-8 col-sm-12 col-11 main-section"> -->
+                    <div class="col-md-8 offset-2 col-sm-12 main-section">
+                        <h4 class="text-center" style="font-weight: 600; color: rgba(0,0,0,0.5);">Post an issue </h4>
+                        <br>
+                        <input name="title" class="form-control" placeholder="Subject">
+                        <textarea name="desc" class="form-control" style="align-items: center" rows="8" cols="80"
+                                  placeholder="Describe your issue here, attach relevant files related to the issue and post ..."></textarea>
+                        <div class="form-row">
+                            <input name="file" type="file" multiple class="form-control col-md-6"
+                                   data-overwrite-initial="false" data-min-file-count="2" style="color: #3f4c6b">
+                            <select name="tag" class="form-control col-md-6">
+                                <option selected>#Civil</option>
+                                <option>#Architectural</option>
+                                <option>#Electrical</option>
+                                <option>#Mechanical</option>
+                                <option>#Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-info col-md-8 offset-2 mt-3">upload</button>
                 </div>
-                <button type="submit" class="btn btn-info col-md-8 offset-2 mt-2">Post</button>
             </div>
         </form>
 
-        <form action="/issue">
-            <div class="container mt-5 table-responsive">
+        <div class="container mt-5 table-responsive">
+            <form action="/issue">
                 <table class="table"
                        style="color: #8595A1; font-size: 16px; box-shadow: inset 0 -1px 0 0 #E0E7ED; background: white;">
                     <h5 align="center"><b>You can view all the issues posted below: </b></h5>
@@ -131,13 +132,14 @@
                             <td style="font-weight: 600;"> {{ row[0] }}</td>  <!-- Issue number -->
                             <td> {{ row[1] }}</td>   <!-- Title-->
                             <td>{{ row[4] }}</td> <!-- Tag-->
-                            <td>{{ row[3] }}</td>
+                            <td><a href="../static/uploads/{{ row[3] }}">{{ row[3] }}</a></td> <!-- File -->
                             <td> {{ row[5] }}</td> <!-- Date posted-->
                         </tr>
                     {% endfor %}
                 </table>
-            </div>
-        </form>
+            </form>
+        </div>
+
         <!-- End of Projects Table -->
     </main>
 </div>

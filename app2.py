@@ -475,7 +475,8 @@ def add_issue():
 
         # since we already have a connection to the database, we execute using the cursor fxn
         cursor = connection.cursor()
-        sql = """INSERT INTO tbl_issues(title, description, file, tag) VALUES (%s,%s,%s,%s) """
+
+        sql = """INSERT INTO tbl_issues (title, description, file, tag) VALUES (%s,%s,%s,%s) """
 
         try:
             cursor.execute(sql, (title, desc, filename, tag))
