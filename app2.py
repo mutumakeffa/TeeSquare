@@ -1,7 +1,10 @@
 import os
 from os.path import join, dirname, realpath
 
-from flask import Flask, render_template, request, redirect, session, send_file
+from flask import Flask, render_template, request, redirect, session, send_file, flash
+from flask_login import LoginManager
+from flask_login import login_required
+from functools import wraps
 
 # we create a flask application parsing its name
 app2 = Flask(__name__)
@@ -9,6 +12,11 @@ app2 = Flask(__name__)
 # We now want to create a session to identify each user
 # We first generate a secret key used for encrypting the session. You can also import random  and use x= random.randit(0,5)
 app2.secret_key = "sssss34567890hgffghjk(*&^%$#@#$%^&"
+
+# flask-login
+login_manager = LoginManager()
+login_manager.init_app(app2)
+login_manager.login_view = "login"
 
 # we want to now upload Images and files
 from werkzeug.utils import secure_filename
@@ -161,6 +169,37 @@ def register():
         return render_template('Registration_template.html')
 
 
+# @app2.route('/login', methods=['POST', 'GET'])
+# def login():
+#     if request.method == 'POST':
+#         email_add = request.form['email_add']
+#         password = request.form['password']
+#
+#         # connection = pymysql.connect("localhost", "root", "", "datasuit_db")
+#
+#         cursor = connection.cursor()
+#
+#         sql = """SELECT * FROM tbl_register WHERE email_add=%s AND password=%s """
+#         cursor.execute(sql, (email_add, password))
+#
+#         if cursor.rowcount == 0:
+#             return render_template('login_template.html', msg6="unsuccessful Login. Check if you are registered")
+#         elif cursor.rowcount == 1:
+#             session['key'] = email_add
+#             # rows = cursor.fetchall()
+#             # session['key1'] = rows[0]
+#             # session['key2'] = rows[3]
+#             # print(rows[3])
+#             return redirect('/projects')
+#
+#         else:
+#             return render_template('login_template.html', msg6='Something went Wrong. sorry for the inconvinience '
+#                                                                'Contact support at +254716681166')
+#     else:
+#         return render_template('login_template.html')
+
+
+
 @app2.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
@@ -177,13 +216,7 @@ def login():
         if cursor.rowcount == 0:
             return render_template('login_template.html', msg6="unsuccessful Login. Check if you are registered")
         elif cursor.rowcount == 1:
-            session['key'] = email_add
-            # rows = cursor.fetchall()
-            # session['key1'] = rows[0]
-            # session['key2'] = rows[3]
-            # print(rows[3])
             return redirect('/projects')
-
         else:
             return render_template('login_template.html', msg6='Something went Wrong. sorry for the inconvinience '
                                                                'Contact support at +254716681166')
@@ -191,28 +224,61 @@ def login():
         return render_template('login_template.html')
 
 
-# @app2.route('/Dashboard/<code>')       #to give that route its own unique route
-# def dashboard(code):
-#     print(code)
+@app2.route('/Dashboard/<code>')  # to give that route its own unique route
+@login_required
+def dashboard(code):
+    print(code)
+    return render_template('Dashboard2.html')
+
+
+# @app2.route('/Dashboard')
+# def dashboard():
 #     return render_template('Dashboard2.html')
 
 
-@app2.route('/Dashboard')
-def dashboard():
-    return render_template('Dashboard2.html')
+# @app2.route('/add_projects', methods=['POST', 'GET'])
+# def add_projects():
+#     # we want to protect the Projects templates with a session
+#     if 'key' in session:
+#         # pull out the key and get back your email and store that email in a variable called email
+#         # This helps you track who was in session when a certain activity was executed
+#         # you can render this email to the database to monitor various aspects
+#         # We use the email from the session to track what a specific user does.
+#         # i.e we can track individual products or projects and use that to make specific user profiles
+#         # also don't forget to add a column to cater for the email session in the database.
+#         email = session['key']
+#
+#         if request.method == 'POST':
+#             project_name = request.form['project_name']
+#             project_code = request.form['project_code']
+#             project_status = request.form['project_status']
+#             project_location = request.form['project_location']
+#
+#             # connection = pymysql.connect("localhost", "root", "", "datasuit_db")
+#
+#             cursor = connection.cursor()
+#             sql = """INSERT INTO tbl_projects (project_name, project_code, project_status, project_location, email_add) VALUES (%s, %s, %s, %s, %s)"""
+#
+#             try:
+#                 cursor.execute(sql, (project_name, project_code, project_status, project_location, email))
+#                 connection.commit()
+#                 return redirect("/Dashboard")
+#             except:
+#                 connection.commit()
+#                 return render_template('Projects.html', msg="Error during transimmission")
+#
+#         else:
+#             return render_template('Projects.html', msg10=email)
+#
+#
+#     elif 'key' not in session:
+#         return redirect('/login')
+#     else:
+#         return redirect('/login')
 
 
 @app2.route('/add_projects', methods=['POST', 'GET'])
 def add_projects():
-    # we want to protect the Projects templates with a session
-    if 'key' in session:
-        # pull out the key and get back your email and store that email in a variable called email
-        # This helps you track who was in session when a certain activity was executed
-        # you can render this email to the database to monitor various aspects
-        # We use the email from the session to track what a specific user does.
-        # i.e we can track individual products or projects and use that to make specific user profiles
-        # also don't forget to add a column to cater for the email session in the database.
-        email = session['key']
 
         if request.method == 'POST':
             project_name = request.form['project_name']
@@ -223,10 +289,10 @@ def add_projects():
             # connection = pymysql.connect("localhost", "root", "", "datasuit_db")
 
             cursor = connection.cursor()
-            sql = """INSERT INTO tbl_projects (project_name, project_code, project_status, project_location, email_add) VALUES (%s, %s, %s, %s, %s)"""
+            sql = """INSERT INTO tbl_projects (project_name, project_code, project_status, project_location) VALUES (%s, %s, %s, %s)"""
 
             try:
-                cursor.execute(sql, (project_name, project_code, project_status, project_location, email))
+                cursor.execute(sql, (project_name, project_code, project_status, project_location))
                 connection.commit()
                 return redirect("/Dashboard")
             except:
@@ -234,13 +300,7 @@ def add_projects():
                 return render_template('Projects.html', msg="Error during transimmission")
 
         else:
-            return render_template('Projects.html', msg10=email)
-
-
-    elif 'key' not in session:
-        return redirect('/login')
-    else:
-        return redirect('/login')
+            return render_template('Projects.html', msg10="")
 
 
 @app2.route('/search', methods=['POST', 'GET'])
@@ -276,21 +336,47 @@ def search():
         return render_template('Projects.html')
 
 
+# @app2.route('/projects')
+# def projects():
+#     if 'key' in session:
+#
+#         # you can check the session roles here
+#         # if not
+#         # check algorithms to encrypt passwords Bcrypt
+#
+#         # connection = pymysql.connect("localhost", "root", "", "datasuit_db")
+#
+#         cursor = connection.cursor()
+#
+#         sql = """SELECT * FROM tbl_projects WHERE email_add = %s ORDER BY time_created DESC """  # shows records in descending order / ASC
+#         email = session['key']
+#         cursor.execute(sql, email)
+#
+#         # define a session key that tracks each individual project key to separate the projects
+#
+#         # fetch rows
+#         rows = cursor.fetchall()  # rows can contain 0,1 or more rows
+#
+#         # perform a row count
+#         if cursor.rowcount == 0:
+#             return render_template('Projects.html', msg='No update in Projects')
+#         else:
+#             return render_template('Projects.html', data=rows)
+#
+#     elif 'key' not in session:
+#         return redirect('/login')
+#     else:
+#         return redirect('/login')
+
+
 @app2.route('/projects')
 def projects():
-    if 'key' in session:
-
-        # you can check the session roles here
-        # if not
-        # check algorithms to encrypt passwords Bcrypt
-
-        # connection = pymysql.connect("localhost", "root", "", "datasuit_db")
 
         cursor = connection.cursor()
 
-        sql = """SELECT * FROM tbl_projects WHERE email_add = %s ORDER BY time_created DESC """  # shows records in descending order / ASC
-        email = session['key']
-        cursor.execute(sql, email)
+        sql = """SELECT * FROM tbl_projects ORDER BY time_created DESC """  # shows records in descending order / ASC
+
+        cursor.execute(sql)
 
         # define a session key that tracks each individual project key to separate the projects
 
@@ -303,10 +389,17 @@ def projects():
         else:
             return render_template('Projects.html', data=rows)
 
-    elif 'key' not in session:
-        return redirect('/login')
-    else:
-        return redirect('/login')
+
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            flash("You need to login first")
+            return redirect('/login')
+
+    return wrap
 
 
 @app2.route('/add_team', methods=['POST', 'GET'])
@@ -574,6 +667,7 @@ def logout():
 
 if __name__ == '__main__':
     app2.run(debug=True)
+    #remember to remove the debug=True in production server to prevent security loopholes
 
 '''
 
